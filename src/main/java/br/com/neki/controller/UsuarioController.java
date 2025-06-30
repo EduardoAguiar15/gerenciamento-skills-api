@@ -35,7 +35,7 @@ import br.com.neki.exception.SenhaException;
 import br.com.neki.security.JwtUtil;
 import br.com.neki.security.RecaptchaService;
 import br.com.neki.service.UsuarioService;
-import io.swagger.annotations.ApiOperation;
+//import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/usuario")
@@ -51,13 +51,13 @@ public class UsuarioController {
 	private JwtUtil jwtUtil;
 
 	@GetMapping
-	@ApiOperation(value = "Listar os usuarios", notes = "Lista todos os usuarios cadastrados no sistema")
+//	@ApiOperation(value = "Listar os usuarios", notes = "Lista todos os usuarios cadastrados no sistema")
 	public ResponseEntity<List<UsuarioDTO>> listar() {
 		return ResponseEntity.ok(usuarioService.findAll());
 	}
 
 	@GetMapping("/{id}")
-	@ApiOperation(value = "Buscar usuario por id", notes = "Busca o usuario pelo id correspondente")
+//	@ApiOperation(value = "Buscar usuario por id", notes = "Busca o usuario pelo id correspondente")
 	public ResponseEntity<UsuarioDTO> buscar(@PathVariable Long id) {
 		UsuarioDTO usuarioDTO = usuarioService.findById(id);
 		if (usuarioDTO == null) {
@@ -67,7 +67,7 @@ public class UsuarioController {
 	}
 
 	@PostMapping
-	@ApiOperation(value = "Cadastrar usuario", notes = "Cadastra usuario no sistema")
+//	@ApiOperation(value = "Cadastrar usuario", notes = "Cadastra usuario no sistema")
 	public ResponseEntity<?> inserir(@Valid @RequestBody UsuarioInserirDTO usuario) {
 
 		boolean validCaptcha = recaptchaService.validateRecaptcha(usuario.getRecaptchaToken());
@@ -96,7 +96,7 @@ public class UsuarioController {
 	}
 
 	@PutMapping("/{id}")
-	@ApiOperation(value = "Atualiza usuário por ID", notes = "Atualiza usuário pelo ID correspondente")
+//	@ApiOperation(value = "Atualiza usuário por ID", notes = "Atualiza usuário pelo ID correspondente")
 	public ResponseEntity<UsuarioDTO> atualizar(@PathVariable Long id,
 			@RequestBody @Valid UsuarioAtualizarDTO usuario) {
 		UsuarioDTO usuarioAtualizado = usuarioService.atualizar(id, usuario);
@@ -109,7 +109,7 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/esqueci-senha")
-	@ApiOperation(value = "Solicita redefinição de senha", notes = "Solicita a redefinição da senha do usuário por e-mail")
+//	@ApiOperation(value = "Solicita redefinição de senha", notes = "Solicita a redefinição da senha do usuário por e-mail")
 	public ResponseEntity<?> solicitarRedefinicao(@RequestBody @Valid SolicitarSenhaDTO solicitarSenha)
 			throws EmailException, MessagingException {
 
@@ -133,7 +133,7 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/redefinir-senha")
-	@ApiOperation(value = "Redefine a senha do usuário", notes = "Redefine a senha do usuário via e-mail")
+//	@ApiOperation(value = "Redefine a senha do usuário", notes = "Redefine a senha do usuário via e-mail")
 	public ResponseEntity<String> redefinirSenha(@RequestParam("token") String token,
 			@RequestBody RedefinirSenhaDTO dto) {
 		usuarioService.redefinirSenha(token, dto.getNovaSenha(), dto.getConfirmaSenha());
@@ -141,7 +141,7 @@ public class UsuarioController {
 	}
 
 	@DeleteMapping("/{id}")
-	@ApiOperation(value = "Deleta usuario por id", notes = "Deleta usuario pelo id correspondente")
+//	@ApiOperation(value = "Deleta usuario por id", notes = "Deleta usuario pelo id correspondente")
 	public ResponseEntity<Void> remover(@PathVariable Long id) {
 
 		Boolean validate = usuarioService.deletar(id);
