@@ -16,8 +16,8 @@ public class MailSenderConfig {
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
 
-        mailSender.setUsername(System.getenv("MAIL_USERNAME"));
-        mailSender.setPassword(System.getenv("MAIL_PASSWORD"));
+        mailSender.setUsername(System.getenv("SPRING.MAIL.USERNAME"));
+        mailSender.setPassword(System.getenv("SPRING.MAIL.PASSWORD"));
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.smtp.auth", "true");
