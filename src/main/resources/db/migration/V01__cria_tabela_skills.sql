@@ -1,4 +1,4 @@
-CREATE TABLE skills(
-    id_skill serial primary key,
-    skill_nome varchar(60)
+CREATE TABLE skills (
+    id_skill BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    skill_nome VARCHAR(60)
 );
