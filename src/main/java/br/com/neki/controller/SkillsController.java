@@ -35,4 +35,15 @@ public class SkillsController {
 		}
 		return ResponseEntity.ok(skillsDTO);
 	}
+
+	@GetMapping("/health")
+	@Operation(summary = "Health Check", description = "Verifica se o serviço e o banco de dados estão funcionando")
+	public ResponseEntity<String> healthCheck() {
+    		try {
+        		List<SkillsDTO> skills = skillsService.findAll();
+        		return ResponseEntity.ok("OK - Skills carregadas");
+    		} catch (Exception e) {
+        		return ResponseEntity.status(503).body("Erro ao acessar o banco: " + e.getMessage());
+    		}
+	}
 }
