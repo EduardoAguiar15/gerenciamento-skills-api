@@ -9,7 +9,8 @@ import br.com.neki.dtos.SkillsCompletoDTO;
 import br.com.neki.dtos.RelacionamentoVincularDTO;
 import br.com.neki.service.RelacionamentoService;
 import br.com.neki.service.UsuarioService;
-//import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping("/relacionamento")
+@Tag(name = "Relacionamento", description = "Gerencia a associação entre usuários e suas skills")
 public class RelacionamentoController {
 
 	@Autowired
@@ -34,7 +36,7 @@ public class RelacionamentoController {
 	UsuarioService usuarioService;
 
 	@PostMapping("/usuario/{idUsuario}/skills")
-//	@ApiOperation(value = "Cadastrar relacionamento", notes = "Cadastra o relacionamento entre usuario e skill passando o id do usuario e da skill")
+	@Operation(summary = "Cadastrar relacionamento", description = "Cadastra o relacionamento entre usuario e skill passando o id do usuario e da skill")
 	public ResponseEntity<SkillsCompletoDTO> criarVinculo(@PathVariable Long idUsuario,
 			@Valid @RequestBody RelacionamentoVincularDTO relacionamentoInserir) {
 
@@ -49,7 +51,7 @@ public class RelacionamentoController {
 	}
 
 	@PutMapping("/usuario/{idUsuario}/skills")
-//	@ApiOperation(value = "Atualizar relacionamento", notes = "Atualiza o relacionamento entre usuario e skill passando o id do usuario e da skill")
+	@Operation(summary = "Atualizar relacionamento", description = "Atualiza o relacionamento entre usuario e skill passando o id do usuario e da skill")
 	public ResponseEntity<SkillsCompletoDTO> atualizarVinculo(@PathVariable Long idUsuario,
 			@Valid @RequestBody RelacionamentoVincularDTO relacionamentoInserir) {
 		relacionamentoInserir.setUsuarioId(idUsuario);
@@ -58,21 +60,21 @@ public class RelacionamentoController {
 	}
 
 	@GetMapping("usuario/{usuarioId}/skills")
-//	@ApiOperation(value = "Buscar relacionamento por usuario", notes = "Busca todas as skills foram vinculadas a um usuario pelo id")
+	@Operation(summary = "Buscar relacionamento por usuario", description = "Busca todas as skills foram vinculadas a um usuario pelo id")
 	public ResponseEntity<List<SkillsCompletoDTO>> listarVinculos(@PathVariable Long usuarioId) {
 		List<SkillsCompletoDTO> skills = relacionamentoService.listarVinculos(usuarioId);
 		return ResponseEntity.ok().body(skills);
 	}
 
 	@GetMapping("usuario/{usuarioId}/skills/{skillsId}")
-//	@ApiOperation(value = "Buscar relacionamento", notes = "Busca o relacionamento entre a skill pelo id com um usuario pelo id")
+	@Operation(summary = "Buscar relacionamento", description = "Busca o relacionamento entre a skill pelo id com um usuario pelo id")
 	public ResponseEntity<SkillsCompletoDTO> buscarVinculo(@PathVariable Long usuarioId, @PathVariable Long skillsId) {
 		SkillsCompletoDTO relacionamento = relacionamentoService.buscarVinculo(usuarioId, skillsId);
 		return ResponseEntity.ok(relacionamento);
 	}
 
 	@DeleteMapping("usuario/{usuarioId}/skills/{skillsId}")
-//	@ApiOperation(value = "Deletar relacionamento", notes = "Deleta o relacionamento entre uma skill pelo id com um usuario pelo id")
+	@Operation(summary = "Deletar relacionamento", description = "Deleta o relacionamento entre uma skill pelo id com um usuario pelo id")
 	public ResponseEntity<Void> remover(@PathVariable Long usuarioId, @PathVariable Long skillsId) {
 		relacionamentoService.desvincularRelacionamento(usuarioId, skillsId);
 		return ResponseEntity.noContent().build();
