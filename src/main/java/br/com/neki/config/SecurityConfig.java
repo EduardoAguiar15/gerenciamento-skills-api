@@ -42,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests()
+				.antMatchers(HttpMethod.GET, "/skills/health").permitAll()
 				.antMatchers(HttpMethod.POST, "/usuario", "/usuario/esqueci-senha", "/usuario/redefinir-senha")
 				.permitAll().anyRequest().authenticated().and().httpBasic().and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().cors().and().csrf().disable();
