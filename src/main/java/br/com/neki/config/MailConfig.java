@@ -23,7 +23,7 @@ public class MailConfig {
 		helper.setSubject(assunto);
 		helper.setFrom("gerenciadorskills@gmail.com");
 
-		String imageUrl = "https://res.cloudinary.com/dptl0qlqr/image/upload/f_auto,q_auto,w_600/bem_vindo_email_hbftei.jpg";
+		String imageUrl = "https://res.cloudinary.com/dptl0qlqr/image/upload/f_auto,q_auto,w_600/bem_vindo_email_hbftei.png";
 
 		String htmlContent = "<html><body>"
 				+ "<h1 style= 'font-size: 23px;'>Bem-vindo ao sistema de gerenciamento de skills!</h1><br>"
