@@ -1,4 +1,4 @@
-![GerenciamentoSkills 00a75eb03130a22d3c40](https://github.com/user-attachments/assets/c6dab51f-226f-48a9-96df-64af0150666a)# 🚀 Sistema Gerenciador de Skills
+# 🚀 Sistema Gerenciador de Skills
 
 Desenvolvi este sistema a partir de um desafio técnico com foco no **gerenciamento de usuários e suas habilidades**.  
 Após concluir o desafio inicial, decidi evoluir a aplicação, adicionando novas funcionalidades e tornando-a mais robusta e completa.
